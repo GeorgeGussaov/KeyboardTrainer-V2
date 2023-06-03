@@ -65,7 +65,7 @@
             // 
             this.labelCurrentWord.AutoSize = true;
             this.labelCurrentWord.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F);
-            this.labelCurrentWord.Location = new System.Drawing.Point(855, 297);
+            this.labelCurrentWord.Location = new System.Drawing.Point(757, 300);
             this.labelCurrentWord.Name = "labelCurrentWord";
             this.labelCurrentWord.Size = new System.Drawing.Size(112, 17);
             this.labelCurrentWord.TabIndex = 3;

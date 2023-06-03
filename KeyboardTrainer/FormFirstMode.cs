@@ -20,29 +20,29 @@ namespace KeyboardTrainer
         int cntErr = 0;
         string title = "";
         int ind = 0;
+        string filmText;
         public FormFirstMode()
         {
             InitializeComponent();
             Random rnd = new Random();
             int ind = rnd.Next(0, 10);
 
-            string[] texts = { "text1.txt", "text2.txt", "text3.txt", "text4.txt", "text5.txt",
-                "text6.txt", "text7.txt", "text8.txt", "text9.txt", "text10.txt" };
             string[] ans = { "Крестный отец", "Хранители снов", "Великолепная семерка", "Ведьмак 2: Убийца королей", "Хоббит: Неожиданное путешествие",
                 "Назад в будущее", "Бэтмен: Начало", "Джентельмены", "Бешеные псы", "Во все тяжкие"};
 
-            StreamReader sr = new StreamReader(texts[ind]);
+            StreamReader sr = new StreamReader("text" + ind + ".txt");
             title = ans[ind];
-            labelText.Text = sr.ReadToEnd();
+            filmText = sr.ReadToEnd();
+            labelText.Text = filmText;
             sr.Close();                     //если что файл закрыт
             labelCurrentWord.Text = "Текущее слово: " + labelText.Text.Split()[0];
 
             inputButtonMas();
-            text = new List<string>(labelText.Text.Split(new string[] { " ", "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries));
+            text = new List<string>(filmText.Split(new string[] { " ", "\n", "\r\n" }, StringSplitOptions.RemoveEmptyEntries));
         }
         List<string> text = new List<string>();
-
         //взято с инета, нужно чтобы сплитнуть ентеры. Идея с инициализацией перед описанием тоже, т.к. иначе ругается на нестатическое поле labelText
+
 
         Button[] keyboard = new Button[46];
         void inputButtonMas() //вводим визуальную клавиатуру
