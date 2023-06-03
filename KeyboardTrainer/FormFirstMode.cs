@@ -79,7 +79,7 @@ namespace KeyboardTrainer
             }
         }
 
-
+        //.
 
         Stopwatch sw = Stopwatch.StartNew(); //таймер
         private void textBoxTrainingField_TextChanged(object sender, EventArgs e)
