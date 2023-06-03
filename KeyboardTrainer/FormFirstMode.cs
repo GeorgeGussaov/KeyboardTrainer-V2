@@ -79,7 +79,7 @@ namespace KeyboardTrainer
             }
         }
 
-        //.
+        
 
         Stopwatch sw = Stopwatch.StartNew(); //таймер
         private void textBoxTrainingField_TextChanged(object sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace KeyboardTrainer
                 ind++;
             }
 
-
+            
             if (user == "")
             {
                 for (int i = 0; i < keyboard.Length; i++)   //очищаем клаву
