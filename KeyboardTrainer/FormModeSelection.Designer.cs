@@ -34,9 +34,10 @@
             // 
             // buttonFirstMode
             // 
-            this.buttonFirstMode.Location = new System.Drawing.Point(154, 95);
+            this.buttonFirstMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonFirstMode.Location = new System.Drawing.Point(154, 225);
             this.buttonFirstMode.Name = "buttonFirstMode";
-            this.buttonFirstMode.Size = new System.Drawing.Size(465, 72);
+            this.buttonFirstMode.Size = new System.Drawing.Size(749, 72);
             this.buttonFirstMode.TabIndex = 0;
             this.buttonFirstMode.Text = "Первый режим";
             this.buttonFirstMode.UseVisualStyleBackColor = true;
@@ -44,9 +45,10 @@
             // 
             // buttonSecondMode
             // 
-            this.buttonSecondMode.Location = new System.Drawing.Point(154, 242);
+            this.buttonSecondMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSecondMode.Location = new System.Drawing.Point(154, 372);
             this.buttonSecondMode.Name = "buttonSecondMode";
-            this.buttonSecondMode.Size = new System.Drawing.Size(465, 72);
+            this.buttonSecondMode.Size = new System.Drawing.Size(749, 72);
             this.buttonSecondMode.TabIndex = 1;
             this.buttonSecondMode.Text = "Второй режим";
             this.buttonSecondMode.UseVisualStyleBackColor = true;
@@ -56,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1084, 711);
             this.Controls.Add(this.buttonSecondMode);
             this.Controls.Add(this.buttonFirstMode);
             this.Name = "FormModeSelection";

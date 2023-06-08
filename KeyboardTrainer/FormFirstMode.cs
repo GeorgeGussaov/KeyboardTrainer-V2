@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace KeyboardTrainer
         {
             InitializeComponent();
             Random rnd = new Random();
-            int ind = rnd.Next(0, 10);
+            int ind = rnd.Next(1, 10);
 
             string[] ans = { "Крестный отец", "Хранители снов", "Великолепная семерка", "Ведьмак 2: Убийца королей", "Хоббит: Неожиданное путешествие",
                 "Назад в будущее", "Бэтмен: Начало", "Джентельмены", "Бешеные псы", "Во все тяжкие"};
@@ -93,12 +94,13 @@ namespace KeyboardTrainer
                     labelCntError.Text = "Количество ошибок: " + cntErr;
                 }
                 ind++;
+                
             }
 
             
             if (user == "")
             {
-                for (int i = 0; i < keyboard.Length; i++)   //очищаем клаву
+                for (int i = 0; i < keyboard.Length; i++)                               //очищаем клаву
                     keyboard[i].BackColor = Color.White;
                 ind = 0;
             }
@@ -116,25 +118,45 @@ namespace KeyboardTrainer
                     {
                         if (user[i].ToString().ToLower() == keyboard[j].Text && text[check][i] == user[i])  //это кошмар, но на этом кошмаре
                             keyboard[j].BackColor = Color.Green;                                            //работает визуальная клавиатура
-                        else if (user[i] == ',')
+                        else if (user[i] == ',' && text[check][i] == user[i])
                         {
                             keyboard[34].BackColor = Color.Yellow;  //клавиши, нажимаемые парно, закрашиваются желтым, остальные зеленым
                             keyboard[44].BackColor = Color.Yellow;
                         }
+                        else if (user[i] == ',')
+                        {
+                            keyboard[34].BackColor = Color.Red;
+                            keyboard[44].BackColor = Color.Red;
+                        }
                         else if (user[i] == '?' && text[check][i] == user[i])
                         {
-                            keyboard[34].BackColor = Color.Yellow;              //шифт - 34, остальное подходящие клавиши
+                            keyboard[34].BackColor = Color.Yellow;              
                             keyboard[6].BackColor = Color.Yellow;
+                        }
+                        else if (user[i] == '?')
+                        {
+                            keyboard[34].BackColor = Color.Red;              //шифт - 34, остальное подходящие клавиши
+                            keyboard[6].BackColor = Color.Red;
                         }
                         else if (user[i] == '!' && text[check][i] == user[i])
                         {
                             keyboard[34].BackColor = Color.Yellow;
                             keyboard[0].BackColor = Color.Yellow;
                         }
-                        else if (user[i] == '*' && text[check][i] == user[i])
+                        else if (user[i] == '!')
+                        {
+                            keyboard[34].BackColor = Color.Red;
+                            keyboard[0].BackColor = Color.Red;
+                        }
+                        else if (user[i] == '"' && text[check][i] == user[i])
                         {
                             keyboard[34].BackColor = Color.Yellow;
                             keyboard[1].BackColor = Color.Yellow;
+                        }
+                        else if (user[i] == '"')
+                        {
+                            keyboard[34].BackColor = Color.Red;
+                            keyboard[1].BackColor = Color.Red;
                         }
                         else if (user[i].ToString().ToLower() == keyboard[j].Text && text[check][i] != user[i])
                             keyboard[j].BackColor = Color.Red;  //нерпавильные красным
