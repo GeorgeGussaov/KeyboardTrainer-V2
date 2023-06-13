@@ -83,7 +83,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "FormFirstMode";
-            this.Text = "FormFirstMode";
+            this.Text = "Первый режим";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -26,16 +26,18 @@ namespace KeyboardTrainer
         {
             InitializeComponent();
             Random rnd = new Random();
-            int ind = rnd.Next(1, 10);
+            int ind = rnd.Next(1, 11);
 
-            string[] ans = { "Крестный отец", "Хранители снов", "Великолепная семерка", "Ведьмак 2: Убийца королей", "Хоббит: Неожиданное путешествие",
+            string[] names = { "Крестный отец", "Хранители снов", "Великолепная семерка", "Ведьмак 2: Убийца королей", "Хоббит: Неожиданное путешествие",
                 "Назад в будущее", "Бэтмен: Начало", "Джентельмены", "Бешеные псы", "Во все тяжкие"};
 
             StreamReader sr = new StreamReader("text" + ind + ".txt");
-            title = ans[ind];
+            title = names[ind - 1];
+
             filmText = sr.ReadToEnd();
             labelText.Text = filmText;
             sr.Close();                     //если что файл закрыт
+            
             labelCurrentWord.Text = "Текущее слово: " + labelText.Text.Split()[0];
 
             inputButtonMas();
@@ -50,15 +52,15 @@ namespace KeyboardTrainer
         {
             string[] keyboardButtons = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0","-","й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з","х","ъ", "ф",
                 "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", ".", "space" };
-            int left = 3;
+            int left = 5;
             for (int i = 0; i < 46; i++)
             {
                 left++;
                 keyboard[i] = new Button();
-                if (i == 11) left = 3;
-                else if (i == 23) left = 3;
-                else if (i == 34) left = 3;
-                else if (i == 45) left = 8;
+                if (i == 11) left = 5;
+                else if (i == 23) left = 5;
+                else if (i == 34) left = 5;
+                else if (i == 45) left = 10;
                 if (i < 11) keyboard[i].Location = new Point(0, 450);
                 else if (i < 23) keyboard[i].Location = new Point(0, 500); //сложные и не очень процессы ввода кнопок
                 else if (i < 34) keyboard[i].Location = new Point(0, 550);
@@ -186,10 +188,7 @@ namespace KeyboardTrainer
                 }
                 else labelCurrentWord.Text = "Текущее слово: " + text[check];
 
-                for (int i = 0; i < keyboard.Length; i++)
-                {
-                    if (keyboard[i].Text == "space") keyboard[i].BackColor = Color.Yellow;
-                }
+                keyboard[45].BackColor = Color.Yellow; //окрас пробела в желтый
             }
         }
     }

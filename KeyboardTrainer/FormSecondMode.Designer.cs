@@ -50,7 +50,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormSecondMode";
-            this.Text = "FormSecondMode";
+            this.Text = "Второй режим";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormSecondMode_KeyDown);
             this.ResumeLayout(false);
             this.PerformLayout();
