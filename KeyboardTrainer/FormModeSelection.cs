@@ -32,5 +32,13 @@ namespace KeyboardTrainer
             second.ShowDialog();
             this.Show();
         }
+
+        private void buttonThirdMode_Click(object sender, EventArgs e)
+        {
+            FormThirdMode third = new FormThirdMode();
+            this.Hide();
+            third.ShowDialog();
+            this.Show();
+        }
     }
 }
