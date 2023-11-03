@@ -34,11 +34,12 @@
             // labelText
             // 
             this.labelText.AutoSize = true;
-            this.labelText.Location = new System.Drawing.Point(422, 192);
+            this.labelText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F);
+            this.labelText.Location = new System.Drawing.Point(370, 192);
             this.labelText.Name = "labelText";
-            this.labelText.Size = new System.Drawing.Size(206, 13);
+            this.labelText.Size = new System.Drawing.Size(289, 18);
             this.labelText.TabIndex = 0;
-            this.labelText.Text = "Нажмите любую клавишу чтобы начать";
+            this.labelText.Text = "Нажмите любую клавишу чтобы начать.";
             // 
             // FormSecondMode
             // 

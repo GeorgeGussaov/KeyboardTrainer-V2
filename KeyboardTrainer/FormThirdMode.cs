@@ -18,6 +18,8 @@ namespace KeyboardTrainer
             InitializeComponent();
         }
         int cntDown = 0;
+        int cntMiss = 0;
+        int cntDeparted = 0;
         List<Button> buttons = new List<Button>();
 
         Button[] keyboard = new Button[26];
@@ -46,8 +48,8 @@ namespace KeyboardTrainer
         {
             Random r = new Random();
             Button newBtn = new Button();
-            p1 = r.Next(0, this.Width - 100);
-            p2 = -20;
+            int p1 = r.Next(0, this.Width - 100);
+            int p2 = -20;
             //newBtn.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             newBtn.Location = new Point(p1, p2);
             newBtn.Name = "newbtn";
@@ -58,15 +60,17 @@ namespace KeyboardTrainer
             buttons.Add(newBtn);
             Controls.Add(newBtn);
         }
-        int p1, p2;
+        //int p1, p2;
 
         private void FormThirdMode_KeyDown(object sender, KeyEventArgs e)
         {
             if (cntDown == 0)
             {
                 inputButtonMas();
-                timer1.Enabled = true;
-                //timer2.Enabled = true;
+                labelText.Visible = false;
+                timerSpawnButtons.Enabled = true;
+                timerMoveButtons.Enabled = true;
+                sw = Stopwatch.StartNew();
             }
             cntDown++;
             foreach (Button btn in buttons)
@@ -74,20 +78,80 @@ namespace KeyboardTrainer
                 if (e.KeyCode.ToString() == btn.Text)
                 {
                     btn.Visible = false;
+                    buttons.Remove(btn);
+                    foreach (Button let in keyboard)
+                    {
+                        if (let.Text == btn.Text) let.BackColor = Color.Green;
+                        else let.BackColor = Color.White;
+                    }
                     btn.Text = " ";
+                    
                     break;
+                }
+                else
+                {
+                    foreach (Button let in keyboard)
+                    {
+                        if (let.Text == e.KeyCode.ToString())
+                        {
+                            let.BackColor = Color.Red;
+                            cntMiss++;
+                        }
+                    }
+                }
+            }
+        }
+        Stopwatch sw;
+
+        private void timerMoveButtons_Tick(object sender, EventArgs e)
+        {
+            if (sw.Elapsed.Minutes > 2)
+            {
+                timerMoveButtons.Interval = 100;
+                timerSpawnButtons.Interval = 350;
+            }
+            else if (sw.Elapsed.Minutes > 1)
+            {
+                timerMoveButtons.Interval = 150;
+                timerSpawnButtons.Interval = 450;
+            }
+            else if (sw.Elapsed.Seconds > 30)
+            {
+                timerMoveButtons.Interval = 250;
+                timerSpawnButtons.Interval = 650;
+            }
+            if (cntDeparted > 4)
+            {
+                sw.Stop();
+                timerMoveButtons.Enabled = false;
+                timerSpawnButtons.Enabled = false;
+                MessageBox.Show($"Слишком много упавших клавиш(5)\n" +
+                    $"Вы продержались времени: {sw.Elapsed.Minutes}:{sw.Elapsed.Seconds}\n" +
+                    $"Количество промахов: {cntMiss}");
+                this.Close();
+            }
+            foreach (Button btn in buttons)
+            {
+                btn.Top = btn.Top + 20;
+                if (btn.Top > 500)
+                {
+                    btn.Visible = false;
+                    cntDeparted++;
+                    foreach (Button let in keyboard)
+                    {
+                        if (let.Text == btn.Text) let.BackColor = Color.Yellow;
+                    }
+                    btn.Text = "";
                 }
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void timerSpawnButtons_Tick(object sender, EventArgs e)
         {
             newButton();
-            foreach (Button btn in buttons)
-            {
-                btn.Top = btn.Top + 20;
-            }
+            
         }
+
 
     }
 }
